@@ -1,0 +1,25 @@
+﻿@using BookShop.Data.ViewModels
+@model ShopProductViewModel
+
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
+<div class="container">
+    @foreach (var el in Model.shopProducts.CartList)
+    {
+        <div class="alert alert-warning mt-3">
+            <b>Книги:</b> @el.product.Name <br />
+            <b>Цена:</b> @el.product.Price.ToString("c")
+             <a asp-action="DeletePage" asp-controller="ShopProducts" asp-route-id="@el.Id" class="btn btn-danger">Удалить</a>
+        </div>
+       
+    }
+    <hr />
+
+     <a class="btn btn-danger m-5" asp-controller="Order" asp-action="Checkout">Оплатить</a>
+
+</div>
